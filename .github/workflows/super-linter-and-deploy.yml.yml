@@ -1,0 +1,31 @@
+name: Super-Linter and Fake Deploy
+
+on:
+  push:
+    branches:
+      - main  # ให้ทำงานเมื่อ push ไปที่ main branch
+
+jobs:
+  super-lint:
+    name: Lint code base
+    runs-on: ubuntu-latest  # ใช้ Ubuntu ในการรัน
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # ดึงโค้ดจาก repository
+
+      - name: Run Super-Linter
+        uses: github/super-linter@v4  # รัน Super Linter
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # ใช้ GITHUB_TOKEN จาก Secrets
+
+  fake-deploy:
+    name: Fake Deploy (Just for demonstration)
+    runs-on: ubuntu-latest  # ใช้ Ubuntu
+    needs: super-lint  # ต้องรอให้ขั้นตอน super-lint เสร็จก่อน
+    steps:
+      - name: Deploy (fake step)
+        run: |
+          echo "Deploy process started..."
+          echo "Deploying to server (fake deploy, no actual deployment)"
+          echo "Deployment completed successfully!"
