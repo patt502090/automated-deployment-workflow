@@ -1,6 +1,4 @@
-Lab 6 Makefile Terraform GitHub Gist
-
-"#automated-deployment-workflow" 
+# Lab 6 Makefile Terraform GitHub Gist
 
 StudentID: 6610110191
 
